@@ -33,6 +33,15 @@
   sudo_user: "{{ db_owner }}"
 
 - name: Create galaxy database
-  postgresql_db: port={{ galaxy_db_port }} name=galaxy owner={{ galaxy_user_name }}
+  postgresql_db: port={{ galaxy_db_port }} name={{ galaxy_db_name }} owner={{ galaxy_user_name }}
   sudo_user: "{{ db_owner }}"
 
+- name: Create shed role
+  postgresql_user: port={{ galaxy_db_port }} name={{ shed_user_name }} role_attr_flags=CREATEDB,LOGIN
+  when: manage_shed_db
+  sudo_user: "{{ db_owner }}"
+
+- name: Create shed database
+  postgresql_db: port={{ galaxy_db_port }} name={{ shed_db_name }} owner={{ shed_user_name }}
+  when: manage_shed_db
+  sudo_user: "{{ db_owner }}"

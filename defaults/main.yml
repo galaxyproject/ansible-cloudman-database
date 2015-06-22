@@ -1,6 +1,7 @@
 ---
 
 galaxy_user_name: galaxy
+galaxy_db_name: galaxy
 galaxyFS_base_dir: /mnt/galaxy
 galaxy_server_dir: "{{ galaxyFS_base_dir }}/galaxy-app"
 
@@ -9,3 +10,8 @@ galaxy_db_port: 5930
 postgresql_bin_dir: /usr/lib/postgresql/9.3/bin
 
 db_owner: postgres
+
+# Option to create a second database role for a Tool Shed database.
+manage_shed_db: no
+shed_user_name: "{{ galaxy_user_name }}"
+shed_db_name: toolshed
