@@ -15,7 +15,7 @@
   sudo_user: "{{ db_owner }}"
 
 - name: Restart Postgres
-  shell: "{{ postgresql_bin_dir }}/pg_ctl -D {{ galaxy_db_dir }} -w -l /tmp/pgSQL.log restart"
+  shell: "{{ postgresql_bin_dir }}/pg_ctl -D {{ galaxy_db_dir }} -w -l /tmp/pgSQL.log -m fast restart"
   when: postgres_running.stat.exists
   sudo_user: "{{ db_owner }}"
 
